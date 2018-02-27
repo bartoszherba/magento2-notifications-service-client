@@ -1,0 +1,80 @@
+@keyframes slide-up {
+  0% {
+    top: 200px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 200px;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.slide-up {
+  animation: slide-up 0.5s;
+}
+
+.slide-down {
+  animation: slide-up 0.5s;
+}
+
+.fade-out {
+  animation: fade-out 0.5s;
+}
+
+.notifications {
+  list-style: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
+
+  .item {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    background-color: @success;
+    opacity: 0.9;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.success {
+      background-color: @success;
+    }
+
+    &.warning {
+      background-color: @warning;
+    }
+
+    &.error {
+      background-color: @error;
+    }
+  }
+
+}

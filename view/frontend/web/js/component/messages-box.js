@@ -1,11 +1,38 @@
 define([
         'jquery',
+        'ko',
         './core',
         '../actions/delete'
-    ], function ($, Core, deleteAction) {
+    ], function ($, ko, Core, deleteAction) {
         'use strict';
 
+        const isPopLocked = ko.observable(false);
+        const updateCounter = function (pop) {
+            if (!isPopLocked()) {
+                isPopLocked(true);
+                pop('pop');
+                setTimeout(() => {
+                    pop('');
+                    isPopLocked(false);
+                }, 1000);
+            }
+        };
+
+        let messages = ko.observableArray([]);
+        let msgCount = ko.computed(() => {
+            return messages().length;
+        });
+
+        const isEmpty = ko.computed(() => {
+            return messages().length === 0;
+        });
+
         return Core.extend({
+            msgCount: msgCount,
+            messages: messages,
+            visible: ko.observable(false),
+            isEmpty: isEmpty,
+            pop: ko.observable(''),
             initialize: function () {
                 this._super();
             },
@@ -21,10 +48,7 @@ define([
                      */
                     if (this.options.isAlwaysKeepMessages) {
                         this.messages.push(newMsg);
-                        this.pop('pop');
-                        setTimeout(() => {
-                            this.pop('');
-                        }, 1000);
+                        updateCounter(this.pop);
                     } else {
                         this.removeMsg(newMsg);
                     }
@@ -51,7 +75,10 @@ define([
                 }).fail((jqXHR, err) => {
                     console.log(err);
                 });
-            }
+            },
+            toggle: function () {
+                this.visible(!this.visible());
+            },
         });
     }
 );

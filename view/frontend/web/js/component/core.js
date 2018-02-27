@@ -6,22 +6,8 @@ define([
     ], function ($, Component, ko, Socket) {
         'use strict';
 
-        let messages = ko.observableArray([]);
-        let msgCount = ko.computed(() => {
-            return messages().length;
-        });
-
-        const isEmpty = ko.computed(() => {
-            return messages().length === 0;
-        });
-
         return Component.extend({
-            msgCount: msgCount,
-            messages: messages,
-            visible: ko.observable(false),
-            isEmpty: isEmpty,
             isConnected: ko.observable(false),
-            pop: ko.observable(''),
             initialize: function () {
                 this._super();
                 this.socket = new Socket(this.options.endpoint, {
@@ -42,13 +28,11 @@ define([
                     return this.handleNewMessageList(list);
                 });
 
-                this.removeMsg = (data) => {
-                    this.handleRemoveMsg(data);
+                this.removeMsg = (data, evt) => {
+                    this.handleRemoveMsg(data, evt);
                 }
             },
-            toggle: function () {
-                this.visible(!this.visible());
-            },
+
             handleRemoveMsg: function (data) {
                 return true;
             },

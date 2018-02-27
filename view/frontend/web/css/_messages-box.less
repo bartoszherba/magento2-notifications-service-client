@@ -1,0 +1,137 @@
+.messages-box {
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+
+.messages-box-wrapper {
+  position: relative;
+  display: inline-block;
+  color: #757575;
+  padding: 6px 20px;
+  cursor: pointer;
+  &:hover {
+    color: #333333;
+  }
+}
+
+.notifications-counter {
+  color: white;
+  position: absolute;
+  display: block;
+  background-color: #c70000;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  right: 3px;
+  top: -5px;
+  z-index: 10;
+
+  &.pop {
+    animation: pop 0.5s;
+  }
+}
+
+.messages-list {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 32px;
+  min-width: 300px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #333333;
+  line-height: 20px;
+  border: 1px solid #bbbbbb;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  z-index: 10;
+
+  &.empty {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  &.visible {
+    display: block;
+  }
+
+  .item {
+    margin: 0;
+    padding: 10px 20px;
+    position: relative;
+    top: -1px;
+    transition: transform 1s;
+    border-bottom: 1px solid #bbbbbb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.deleted {
+      animation: delete 1s;
+      background-color: #f1f0f0;
+    }
+
+    .remove-msg {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    &.success:before {
+      content: '';
+      display: inline-block;
+      background-color: #00d000;
+      height: 10px;
+      width: 10px;
+      border-radius: 10px;
+    }
+
+    &.error:before {
+      content: '';
+      display: inline-block;
+      background-color: red;
+      height: 10px;
+      width: 10px;
+      border-radius: 10px;
+    }
+
+    &.warning:before {
+      content: '';
+      display: inline-block;
+      background-color: yellow;
+      height: 10px;
+      width: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 6px solid;
+    border-color: transparent transparent #ffffff transparent;
+    z-index: 99;
+    right: 10px;
+    top: -12px;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 7px solid;
+    border-color: transparent transparent #bbbbbb transparent;
+    z-index: 98;
+    top: -14px;
+    right: 9px;
+  }
+}
