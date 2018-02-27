@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Digibart_MessagesNotification::js/fonts/fontawesome-all.min.js"/>
+        <css src="Digibart_MessagesNotification::css/messages-notification.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="digibart.messages" template="Digibart_MessagesNotification::messages.phtml" after="top.links"/>
+        </referenceContainer>
+    </body>
+</page>

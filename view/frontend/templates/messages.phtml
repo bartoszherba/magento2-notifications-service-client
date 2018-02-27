@@ -1,0 +1,18 @@
+<div id="msg-notification" class="msg-notification" data-bind="scope:'msg-notification'" data-block="authentication">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#msg-notification": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "msg-notification": {
+                        "component": "Digibart_MessagesNotification/js/component/messages-box",
+                        "template" : "Digibart_MessagesNotification/messages-box"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+</div>
+

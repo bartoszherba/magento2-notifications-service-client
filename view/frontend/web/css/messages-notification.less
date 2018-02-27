@@ -1,0 +1,131 @@
+.msg-notification {
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+
+.envelope {
+  position: relative;
+  display: inline-block;
+  color: #757575;
+  cursor: pointer;
+
+  &:hover {
+    color: #333333;
+  }
+}
+
+.notifications-counter {
+  color: white;
+  position: absolute;
+  display: block;
+  background-color: #c70000;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  right: -5px;
+  top: -5px;
+  z-index: 10;
+
+  &.pop {
+    animation: pop 0.5s;
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.3);
+  }
+}
+
+@keyframes delete {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-500px);
+  }
+}
+
+.messages-list {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 32px;
+  min-width: 300px;
+  padding: 25px 0;
+  margin: 0;
+  list-style: none;
+  color: #333333;
+  border: 1px solid #bbbbbb;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  overflow-x: hidden;
+
+  &.empty {
+      text-align: center;
+  }
+
+  &.visible {
+    display: block;
+  }
+
+  .item {
+    margin: 0;
+    padding: 10px 20px;
+    position: relative;
+    top: -1px;
+    transition: transform 1s;
+    border-bottom: 1px solid #bbbbbb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    &.deleted {
+      animation: delete 1s;
+      background-color: #f1f0f0;
+    }
+
+    .remove-msg {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 6px solid;
+    border-color: transparent transparent #ffffff transparent;
+    z-index: 99;
+    left: 10px;
+    top: -12px;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 7px solid;
+    border-color: transparent transparent #bbbbbb transparent;
+    z-index: 98;
+    left: 9px;
+    top: -14px;
+    right: 25px;
+  }
+}

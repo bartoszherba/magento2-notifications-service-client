@@ -1,0 +1,19 @@
+    <div class="envelope" data-bind="click: toggle">
+        <i class="fas fa-envelope fa-2x"></i>
+        <span class="notifications-counter" data-bind="text: msgCount, visible: msgCount"></span>
+    </div>
+    <!-- ko if: !isEmpty() -->
+    <ul class="messages-list" data-bind="foreach: messages, css: {visible: visible}">
+        <li class="item">
+            <span data-bind="text: message"> </span>
+            <a href="#" class="remove-msg" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
+        </li>
+    </ul>
+    <!-- /ko -->
+
+    <!-- ko if: isEmpty() -->
+        <p class="messages-list empty" data-bind="css: {visible: visible}">
+            Currently you have no messages.
+        </p>
+    <!-- /ko -->
+
