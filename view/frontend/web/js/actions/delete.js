@@ -5,7 +5,7 @@ define(['jquery'], function ($) {
         return $.ajax('http://localhost:3000/message', {
             method: 'delete',
             data: {
-                accountId: 2,
+                accountId: accountId,
                 _id: id
             }
         });

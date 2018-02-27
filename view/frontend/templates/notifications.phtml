@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var \Digibart\MessagesNotification\Block\Notifications $block
+ */
+?>
+<?php if($block->isModuleEnabled() && $block->isLoggedIn()) :?>
+<div id="notifications" class="notifications" data-bind="scope:'notification'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#notifications": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "notifications": {
+                        "component": "Digibart_MessagesNotification/js/component/notifications",
+                        "template" : "Digibart_MessagesNotification/notifications",
+                        "accountId": <?php echo $block->getCustomerId(); ?>,
+                        "options": <?php echo $block->getJsonOptions() ;?>
+                    }
+                }
+            }
+        }
+    }
+    </script>
+</div>
+<?php endif; ?>

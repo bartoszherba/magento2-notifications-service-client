@@ -1,12 +1,12 @@
-define(['socketio'], function (io) {
-    return function (options) {
-        const {hostname, port, accountId} = options;
+define(['jquery', 'socketio'], function ($, io) {
+    const defaults = {
+        forceNew: true,
+        reconnectionAttempts: 5
+    };
 
-        socket = io(hostname + ':' + port, {
-            query: {
-                accountId: accountId,
-            }
-        });
+    return function (hostname, options) {
+        options = $.extend({}, defaults, options);
+        socket = io(hostname, options);
 
         return socket;
     };

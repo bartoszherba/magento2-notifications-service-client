@@ -6,7 +6,10 @@
     </head>
     <body>
         <referenceContainer name="header-wrapper">
-            <block class="Magento\Framework\View\Element\Template" name="digibart.messages" template="Digibart_MessagesNotification::messages.phtml" after="top.links"/>
+            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.messages.box" template="Digibart_MessagesNotification::messages-box.phtml" after="top.links"/>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.messages.notification" template="Digibart_MessagesNotification::notifications.phtml" />
         </referenceContainer>
     </body>
 </page>
