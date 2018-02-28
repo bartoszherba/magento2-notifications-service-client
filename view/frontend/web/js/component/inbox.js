@@ -2,8 +2,9 @@ define([
         'jquery',
         'ko',
         './core',
-        '../actions/delete'
-    ], function ($, ko, Core, deleteAction) {
+        '../actions/delete',
+        '../actions/update',
+    ], function ($, ko, Core, deleteAction, updateAction) {
         'use strict';
 
         const isPopLocked = ko.observable(false);
@@ -19,8 +20,17 @@ define([
         };
 
         let messages = ko.observableArray([]);
-        let msgCount = ko.computed(() => {
-            return messages().length;
+
+        let newMsgCount = ko.computed(() => {
+            const initialVal = 0;
+            return messages().reduce(function (count, message) {
+
+                if (message.status === 'Unread') {
+                    count += 1;
+                }
+
+                return count;
+            }, initialVal);
         });
 
         const isEmpty = ko.computed(() => {
@@ -28,7 +38,7 @@ define([
         });
 
         return Core.extend({
-            msgCount: msgCount,
+            newMsgCount: newMsgCount,
             messages: messages,
             visible: ko.observable(false),
             isEmpty: isEmpty,
@@ -52,15 +62,9 @@ define([
                     } else {
                         this.removeMsg(newMsg);
                     }
-
-                    console.log(this.messages());
                 }
             },
             handleNewMessageList: function (list) {
-                list = list.filter((item) => {
-                    return item.status === 'Unread';
-                });
-
                 this.messages(list);
             },
             handleRemoveMsg: function (data) {
@@ -78,6 +82,21 @@ define([
             },
             toggle: function () {
                 this.visible(!this.visible());
+
+                if (this.visible() && this.newMsgCount()) {
+                    var updatedMessages = [];
+
+                    this.messages().forEach((message) => {
+                        message.status = 'Read';
+                        updatedMessages.push(message);
+                    });
+
+                    updateAction(updatedMessages).done(() => {
+                        this.messages(updatedMessages);
+                    }).fail((jqXHR, err) => {
+                        console.log(err);
+                    });
+                }
             },
         });
     }

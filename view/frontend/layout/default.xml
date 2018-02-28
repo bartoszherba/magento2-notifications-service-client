@@ -6,10 +6,10 @@
     </head>
     <body>
         <referenceContainer name="header-wrapper">
-            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.messages.box" template="Digibart_MessagesNotification::messages-box.phtml" after="minicart"/>
+            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.inbox" as="inbox" template="Digibart_MessagesNotification::inbox.phtml" after="minicart"/>
         </referenceContainer>
         <referenceContainer name="before.body.end">
-            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.messages.notification" template="Digibart_MessagesNotification::notifications.phtml" />
+            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.notification" as="notification" template="Digibart_MessagesNotification::notifications.phtml" />
         </referenceContainer>
     </body>
 </page>

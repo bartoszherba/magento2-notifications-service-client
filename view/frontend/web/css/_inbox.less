@@ -1,14 +1,15 @@
-.messages-box {
+.inbox-wrapper {
   display: inline-block;
   float: right;
   position: relative;
 }
 
-.messages-box-wrapper {
+.inbox {
   position: relative;
   display: inline-block;
   color: #757575;
-  padding: 6px 20px;
+  padding: 6px 10px;
+  margin-left: 10px;
   cursor: pointer;
   &:hover {
     color: #333333;
@@ -24,8 +25,7 @@
   height: 20px;
   border-radius: 20px;
   text-align: center;
-  font-weight: bold;
-  right: 3px;
+  right: 0;
   top: -5px;
   z-index: 10;
 
@@ -118,7 +118,7 @@
     border: 6px solid;
     border-color: transparent transparent #ffffff transparent;
     z-index: 99;
-    right: 10px;
+    right: 26px;
     top: -12px;
   }
 
@@ -132,6 +132,6 @@
     border-color: transparent transparent #bbbbbb transparent;
     z-index: 98;
     top: -14px;
-    right: 9px;
+    right: 25px;
   }
 }
