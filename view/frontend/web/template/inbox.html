@@ -3,9 +3,11 @@
         <i class="fas fa-bell fa-lg"></i>
         <span class="notifications-counter" data-bind="text: newMsgCount, visible: newMsgCount, css: pop"></span>
     </div>
-    <!-- ko if: !isEmpty() -->
-    <div class="messages-list-wrapper">
-        <ul class="messages-list" data-bind="foreach: messages, css: {visible: visible}">
+    <div class="messages-list-wrapper" data-bind="css: {visible: visible}">
+        <h2 class="messages-list-header"><!-- ko i18n: 'Notifications' --><!-- /ko --></h2>
+
+        <!-- ko if: !isEmpty() -->
+        <ul class="messages-list" data-bind="foreach: messages">
             <li class="item" data-bind="css: type">
                 <span data-bind="text: message"> </span>
                 <a href="#" class="remove-msg" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
