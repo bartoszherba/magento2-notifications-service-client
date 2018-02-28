@@ -4,7 +4,7 @@
         <messages>
             <general>
                 <enable>1</enable>
-                <always_keep_message>1</always_keep_message>
+                <mode>1</mode>
             </general>
         </messages>
     </default>

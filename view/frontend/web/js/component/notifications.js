@@ -1,8 +1,9 @@
 define([
         'jquery',
-        './core',
         'ko',
-    ], function ($, Core, ko) {
+        './core',
+        '../actions/delete'
+    ], function ($, ko, Core, deleteAction) {
         'use strict';
 
         const removeNotification = function (notifications, id) {
@@ -24,22 +25,29 @@ define([
                 const newMsg = response.newMsg;
 
                 /**
-                 * Only the owner of account should see new message
+                 * Only the owner of the account should see new message
                  */
-                if (this.accountId == newMsg.accountId) {
+                if (this.accountId === newMsg.accountId) {
                     this.notifications.push(newMsg);
+
+                    if (this.isNotificationOnlyMode()) {
+                        deleteAction([this.accountId, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
+                            console.log(err);
+                        });
+                    }
 
                     setTimeout(() => {
                         this.handleRemoveMsg(newMsg);
                     }, this.options.timeout);
                 }
-
-
             },
             handleRemoveMsg: function (data) {
                 $('#' + data._id).fadeOut(this.options.fadeOutTime, () => {
                     removeNotification(this.notifications, data._id);
                 });
+            },
+            isNotificationOnlyMode: function () {
+                return this.options.mode === 3;
             }
         });
     }

@@ -7,7 +7,9 @@
 namespace Digibart\MessagesNotification\Block;
 
 use Digibart\MessagesNotification\Api\ConfigResolverInterface;
+use Digibart\MessagesNotification\Config\Source\Mode;
 use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -36,21 +38,29 @@ class Notifications extends Template
     protected $defaultFadeOutTime = 500;
 
     /**
+     * @var EncryptorInterface
+     */
+    protected $encryptor;
+
+    /**
      * Notifications constructor.
      *
      * @param Template\Context $context
      * @param CustomerSession $customerSession
      * @param ConfigResolverInterface $configResolver
+     * @param EncryptorInterface $encryptor
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
         CustomerSession $customerSession,
         ConfigResolverInterface $configResolver,
+        EncryptorInterface $encryptor,
         array $data = []
     ) {
         $this->customerSession = $customerSession;
         $this->configResolver = $configResolver;
+        $this->encryptor = $encryptor;
 
         parent::__construct($context, $data);
     }
@@ -65,11 +75,11 @@ class Notifications extends Template
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCustomerId(): int
+    public function getCustomerId(): string
     {
-        return (int) $this->customerSession->getCustomerId();
+        return (string) $this->customerSession->getCustomerId();
     }
 
     /**
@@ -89,11 +99,27 @@ class Notifications extends Template
     }
 
     /**
+     * @return int
+     */
+    public function getMode(): int
+    {
+        return $this->configResolver->getMode();
+    }
+
+    /**
      * @return bool
      */
-    public function getIsAlwaysKeepMessage(): bool
+    public function isInboxEnabled(): bool
     {
-        return $this->configResolver->getIsAlwaysKeepMessage();
+        return ($this->getMode() === Mode::OPT_DEFAULT || $this->getMode() === Mode::OPT_INBOX_ONLY);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotificationEnabled(): bool
+    {
+        return ($this->getMode() === Mode::OPT_DEFAULT || $this->getMode() === Mode::OPT_NOTIFICATION_ONLY);
     }
 
     /**
@@ -103,10 +129,10 @@ class Notifications extends Template
     {
         return json_encode(
             [
-                'endpoint'             => $this->getServiceEndpoint(),
-                'isAlwaysKeepMessages' => $this->getIsAlwaysKeepMessage(),
-                'timeout'              => $this->_data['timeout'] ?? $this->defaultTimeout,
-                'fadeOutTime'          => $this->_data['fadeOutTime'] ?? $this->defaultFadeOutTime,
+                'endpoint'    => $this->getServiceEndpoint(),
+                'mode'        => $this->getMode(),
+                'timeout'     => $this->_data['timeout'] ?? $this->defaultTimeout,
+                'fadeOutTime' => $this->_data['fadeOutTime'] ?? $this->defaultFadeOutTime,
             ]
         );
     }

@@ -43,14 +43,17 @@ class ConfigResolver implements ConfigResolverInterface
      */
     public function getServiceEndpoint(): string
     {
-        return (string) $this->scopeConfig->getValue(self::PATH_SERVICE_ENDPOINT, ScopeInterface::SCOPE_STORE);
+        return (string) trim(
+            $this->scopeConfig->getValue(self::PATH_SERVICE_ENDPOINT, ScopeInterface::SCOPE_STORE),
+            '/'
+        );
     }
 
     /**
      * @return bool
      */
-    public function getIsAlwaysKeepMessage(): bool
+    public function getMode(): int
     {
-        return (bool) $this->scopeConfig->getValue(self::PATH_ALWAYS_KEEP_MESSAGE, ScopeInterface::SCOPE_STORE);
+        return (int) $this->scopeConfig->getValue(self::PATH_MODE, ScopeInterface::SCOPE_STORE);
     }
 }

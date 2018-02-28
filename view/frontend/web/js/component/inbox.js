@@ -65,25 +65,21 @@ define([
                 const newMsg = response.newMsg;
 
                 /**
-                 * Only the owner of account should see new message
+                 * Only the owner of the account should see new message
                  */
-                if (this.accountId == newMsg.accountId) {
+                if (this.accountId === newMsg.accountId) {
                     /**
                      * If flag isAlwaysKeepMessages is false then message will be instantly removed from service
                      */
-                    if (this.options.isAlwaysKeepMessages) {
-                        this.messages.push(newMsg);
-                        updateCounter(this.pop);
-                    } else {
-                        this.removeMsg(newMsg);
-                    }
+                    this.messages.push(newMsg);
+                    updateCounter(this.pop);
                 }
             },
             handleNewMessageList: function (list) {
                 this.messages(list);
             },
             handleRemoveMsg: function (data) {
-                deleteAction(this.accountId, data._id).done(() => {
+                deleteAction([this.accountId, data._id, this.options.endpoint]).done(() => {
                     for (let i = 0; i < this.messages().length; i++) {
                         if (this.messages()[i]._id === data._id) {
                             const tmpMessages = this.messages();
@@ -106,7 +102,7 @@ define([
                         updatedMessages.push(message);
                     });
 
-                    updateAction(updatedMessages).done(() => {
+                    updateAction([updatedMessages, this.options.endpoint]).done(() => {
                         this.messages(updatedMessages);
                     }).fail((jqXHR, err) => {
                         console.log(err);

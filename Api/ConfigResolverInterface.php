@@ -16,7 +16,7 @@ interface ConfigResolverInterface
      */
     const PATH_ENABLE = 'messages/general/enable';
     const PATH_SERVICE_ENDPOINT = 'messages/general/service_endpoint';
-    const PATH_ALWAYS_KEEP_MESSAGE = 'messages/general/always_keep_message';
+    const PATH_MODE = 'messages/general/mode';
 
     /**
      * @return bool
@@ -29,8 +29,8 @@ interface ConfigResolverInterface
     public function getServiceEndpoint(): string;
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getIsAlwaysKeepMessage(): bool;
+    public function getMode(): int;
 
 }

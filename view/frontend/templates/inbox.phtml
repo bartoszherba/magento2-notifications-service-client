@@ -3,7 +3,7 @@
  * @var \Digibart\MessagesNotification\Block\Notifications $block
  */
 ?>
-<?php if($block->isModuleEnabled() && $block->isLoggedIn()) :?>
+<?php if($block->isModuleEnabled() && $block->isInboxEnabled() && $block->isLoggedIn()) :?>
 <div id="inbox" class="inbox-wrapper" data-bind="scope:'inbox'">
     <!-- ko template: getTemplate() --><!-- /ko -->
     <script type="text/x-magento-init">
@@ -14,7 +14,7 @@
                     "inbox": {
                         "component": "Digibart_MessagesNotification/js/component/inbox",
                         "template" : "Digibart_MessagesNotification/inbox",
-                        "accountId": <?php echo $block->getCustomerId(); ?>,
+                        "accountId": "<?php echo $block->getCustomerId(); ?>",
                         "options": <?php echo $block->getJsonOptions() ;?>,
                         "elementId":"#inbox"
                     }

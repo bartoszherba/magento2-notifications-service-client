@@ -26,10 +26,10 @@
                     <validate>required-entry validate-url</validate>
                     <comment>Socket and API requests will be send on this address</comment>
                 </field>
-                <field id="always_keep_message" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Always Keep Message</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Always keep message in a messages box even though it was displayed as a notification?</comment>
+                <field id="mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mode</label>
+                    <source_model>Digibart\MessagesNotification\Config\Source\Mode</source_model>
+                    <comment>If Notifications Only mode is enabled, messages will be removed immediately from server</comment>
                 </field>
             </group>
         </section>
