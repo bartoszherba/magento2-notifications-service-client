@@ -28,12 +28,16 @@ define([
                  */
                 if (this.accountId == newMsg.accountId) {
                     this.notifications.push(newMsg);
+
+                    setTimeout(() => {
+                        this.handleRemoveMsg(newMsg);
+                    }, this.options.timeout);
                 }
 
 
             },
-            handleRemoveMsg: function (data, evt) {
-                $(evt.target).fadeOut(500, () => {
+            handleRemoveMsg: function (data) {
+                $('#' + data._id).fadeOut(this.options.fadeOutTime, () => {
                     removeNotification(this.notifications, data._id);
                 });
             }

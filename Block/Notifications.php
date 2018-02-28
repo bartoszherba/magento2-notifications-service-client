@@ -23,7 +23,17 @@ class Notifications extends Template
     /**
      * @var ConfigResolverInterface
      */
-    private $configResolver;
+    protected $configResolver;
+
+    /**
+     * @var int
+     */
+    protected $defaultTimeout = 10000;
+
+    /**
+     * @var int
+     */
+    protected $defaultFadeOutTime = 500;
 
     /**
      * Notifications constructor.
@@ -95,6 +105,8 @@ class Notifications extends Template
             [
                 'endpoint'             => $this->getServiceEndpoint(),
                 'isAlwaysKeepMessages' => $this->getIsAlwaysKeepMessage(),
+                'timeout'              => $this->_data['timeout'] ?? $this->defaultTimeout,
+                'fadeOutTime'          => $this->_data['fadeOutTime'] ?? $this->defaultFadeOutTime,
             ]
         );
     }

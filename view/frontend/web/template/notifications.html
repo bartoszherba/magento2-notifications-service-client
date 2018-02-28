@@ -1,6 +1,6 @@
 <!-- ko if: isConnected() -->
 <ul class="notifications" data-bind="foreach: notifications">
-    <li class="item slide-up" data-bind="css: type, click: $parent.removeMsg" title="Click to discard">
+    <li class="item slide-up" data-bind="css: type, click: $parent.removeMsg, attr: { id: _id }" title="Click to discard">
         <span data-bind="text: message"> </span>
     </li>
 </ul>
