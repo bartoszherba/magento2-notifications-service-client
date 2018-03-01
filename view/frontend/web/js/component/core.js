@@ -12,7 +12,7 @@ define([
                 this._super();
                 this.socket = new Socket(this.options.endpoint, {
                     query: {
-                        accountId: this.accountId,
+                        identifier: this.identifier,
                     },
                 });
 

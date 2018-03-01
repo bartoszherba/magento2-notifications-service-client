@@ -27,7 +27,7 @@ define([
                 this.notifications.push(newMsg);
 
                 if (this.isNotificationOnlyMode()) {
-                    deleteAction([this.accountId, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
+                    deleteAction([this.identifier, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
                         console.log(err);
                     });
                 }

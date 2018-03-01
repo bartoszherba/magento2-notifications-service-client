@@ -69,7 +69,7 @@ define([
                 this.messages(list);
             },
             handleRemoveMsg: function (data) {
-                deleteAction([this.accountId, data._id, this.options.endpoint]).done(() => {
+                deleteAction([this.identifier, data._id, this.options.endpoint]).done(() => {
                     for (let i = 0; i < this.messages().length; i++) {
                         if (this.messages()[i]._id === data._id) {
                             const tmpMessages = this.messages();

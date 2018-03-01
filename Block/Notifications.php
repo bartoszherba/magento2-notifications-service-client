@@ -7,9 +7,9 @@
 namespace Digibart\MessagesNotification\Block;
 
 use Digibart\MessagesNotification\Api\ConfigResolverInterface;
+use Digibart\MessagesNotification\Api\IdentifierGeneratorInterface;
 use Digibart\MessagesNotification\Config\Source\Mode;
 use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -38,9 +38,9 @@ class Notifications extends Template
     protected $defaultFadeOutTime = 500;
 
     /**
-     * @var EncryptorInterface
+     * @var IdentifierGeneratorInterface
      */
-    protected $encryptor;
+    protected $identifierGenerator;
 
     /**
      * Notifications constructor.
@@ -48,19 +48,19 @@ class Notifications extends Template
      * @param Template\Context $context
      * @param CustomerSession $customerSession
      * @param ConfigResolverInterface $configResolver
-     * @param EncryptorInterface $encryptor
+     * @param IdentifierGeneratorInterface $identifierGenerator
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
         CustomerSession $customerSession,
         ConfigResolverInterface $configResolver,
-        EncryptorInterface $encryptor,
+        IdentifierGeneratorInterface $identifierGenerator,
         array $data = []
     ) {
         $this->customerSession = $customerSession;
         $this->configResolver = $configResolver;
-        $this->encryptor = $encryptor;
+        $this->identifierGenerator = $identifierGenerator;
 
         parent::__construct($context, $data);
     }
@@ -77,9 +77,9 @@ class Notifications extends Template
     /**
      * @return string
      */
-    public function getCustomerId(): string
+    public function getIdentifier(): string
     {
-        return (string) $this->customerSession->getCustomerId();
+        return $this->identifierGenerator->generate($this->customerSession->getCustomerId());
     }
 
     /**
