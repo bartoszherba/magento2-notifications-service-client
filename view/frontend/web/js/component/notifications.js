@@ -24,22 +24,17 @@ define([
             handleNewMessage: function (response) {
                 const newMsg = response.newMsg;
 
-                /**
-                 * Only the owner of the account should see new message
-                 */
-                if (this.accountId === newMsg.accountId) {
-                    this.notifications.push(newMsg);
+                this.notifications.push(newMsg);
 
-                    if (this.isNotificationOnlyMode()) {
-                        deleteAction([this.accountId, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
-                            console.log(err);
-                        });
-                    }
-
-                    setTimeout(() => {
-                        this.handleRemoveMsg(newMsg);
-                    }, this.options.timeout);
+                if (this.isNotificationOnlyMode()) {
+                    deleteAction([this.accountId, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
+                        console.log(err);
+                    });
                 }
+
+                setTimeout(() => {
+                    this.handleRemoveMsg(newMsg);
+                }, this.options.timeout);
             },
             handleRemoveMsg: function (data) {
                 $('#' + data._id).fadeOut(this.options.fadeOutTime, () => {

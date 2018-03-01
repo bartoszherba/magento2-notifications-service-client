@@ -62,18 +62,8 @@ define([
                 });
             },
             handleNewMessage: function (response) {
-                const newMsg = response.newMsg;
-
-                /**
-                 * Only the owner of the account should see new message
-                 */
-                if (this.accountId === newMsg.accountId) {
-                    /**
-                     * If flag isAlwaysKeepMessages is false then message will be instantly removed from service
-                     */
-                    this.messages.push(newMsg);
-                    updateCounter(this.pop);
-                }
+                this.messages.push(response.newMsg);
+                updateCounter(this.pop);
             },
             handleNewMessageList: function (list) {
                 this.messages(list);
