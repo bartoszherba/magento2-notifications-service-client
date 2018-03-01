@@ -104,11 +104,14 @@ define([
 
                     updateAction([updatedMessages, this.options.endpoint]).done(() => {
                         this.messages(updatedMessages);
-                    }).fail((jqXHR, err) => {
-                        console.log(err);
+                    }).fail(() => {
+                        console.log('Some error occurred while updating messages');
                     });
                 }
             },
+            date: function (dateString) {
+                return new Date(dateString).toLocaleString();
+            }
         });
     }
 );

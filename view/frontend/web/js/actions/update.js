@@ -5,6 +5,7 @@ define(['jquery'], function ($) {
         const [messages, hostname] = options;
         return $.ajax(hostname + '/message/update', {
             method: 'patch',
+            dataType: 'json',
             data: {
                 updates: messages
             }

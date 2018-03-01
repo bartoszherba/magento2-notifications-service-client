@@ -9,8 +9,13 @@
         <!-- ko if: !isEmpty() -->
         <ul class="messages-list" data-bind="foreach: messages">
             <li class="item" data-bind="css: type">
-                <span data-bind="text: message"> </span>
-                <a href="#" class="remove-msg" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
+                <div class="message">
+                    <span data-bind="text: message"></span>
+                    <span class="date" data-bind="text: $parent.date(createdAt)"></span>
+                </div>
+                <div class="actions">
+                    <a href="#" class="remove-msg action" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
+                </div>
             </li>
         </ul>
         <!-- /ko -->

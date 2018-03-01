@@ -39,11 +39,11 @@
   position: absolute;
   right: -15px;
   top: 32px;
-  min-width: 300px;
+  min-width: 350px;
   color: #333333;
   line-height: 20px;
   border: 1px solid #bbbbbb;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px @light-grey;
   background: #fff;
   z-index: 10;
 
@@ -64,7 +64,6 @@
   margin: 0;
   list-style: none;
 
-
   &.empty {
     padding: 25px 0;
     text-align: center;
@@ -72,12 +71,51 @@
 
   .item {
     margin: 0;
-    padding: 10px 20px;
     position: relative;
     top: -1px;
     transition: transform 1s;
-    border-bottom: 1px solid #bbbbbb;
+    border-left: 8px solid;
 
+    & .message {
+      padding: 25px 20px;
+      display: block;
+      margin-right: 60px;
+    }
+
+    & .actions {
+      position: absolute;
+      top: 7px;
+      right: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      transition: opacity 0.2s;
+    }
+
+    & .action {
+      display: block;
+      cursor: pointer;
+
+      svg {
+        padding: 20px 10px;
+      }
+    }
+
+    &:hover {
+      background-color: @lighter-grey;
+
+      & .actions {
+        zoom: 1;
+        filter: alpha(opacity=100);
+        opacity: 1;
+      }
+    }
+
+    & .date {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.8em;
+      color: grey;
+    }
     &:last-child {
       border-bottom: none;
     }
@@ -92,31 +130,16 @@
       cursor: pointer;
     }
 
-    &.success:before {
-      content: '';
-      display: inline-block;
-      background-color: #00d000;
-      height: 10px;
-      width: 10px;
-      border-radius: 10px;
+    &.success {
+      border-left-color: @success;
     }
 
-    &.error:before {
-      content: '';
-      display: inline-block;
-      background-color: red;
-      height: 10px;
-      width: 10px;
-      border-radius: 10px;
+    &.error {
+      border-left-color: @error;
     }
 
-    &.warning:before {
-      content: '';
-      display: inline-block;
-      background-color: yellow;
-      height: 10px;
-      width: 10px;
-      border-radius: 10px;
+    &.warning {
+      border-left-color: @warning;
     }
   }
 
