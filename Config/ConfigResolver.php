@@ -1,12 +1,12 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.com>
  */
 
-namespace Digibart\MessagesNotification\Config;
+namespace Digibart\Notifications\Config;
 
-use Digibart\MessagesNotification\Api\ConfigResolverInterface;
+use Digibart\Notifications\Api\ConfigResolverInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
@@ -41,16 +41,27 @@ class ConfigResolver implements ConfigResolverInterface
     /**
      * @return string
      */
-    public function getServiceEndpoint(): string
+    public function getApiEndpoint(): string
     {
         return (string) trim(
-            $this->scopeConfig->getValue(self::PATH_SERVICE_ENDPOINT, ScopeInterface::SCOPE_STORE),
+            $this->scopeConfig->getValue(self::PATH_API_ENDPOINT, ScopeInterface::SCOPE_STORE),
             '/'
         );
     }
 
     /**
-     * @return bool
+     * @return string
+     */
+    public function getSocketEndpoint(): string
+    {
+        return (string) trim(
+            $this->scopeConfig->getValue(self::PATH_SOCKET_ENDPOINT, ScopeInterface::SCOPE_STORE),
+            '/'
+        );
+    }
+
+    /**
+     * @return int
      */
     public function getMode(): int
     {

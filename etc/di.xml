@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Digibart\MessagesNotification\Api\ConfigResolverInterface" type="Digibart\MessagesNotification\Config\ConfigResolver" />
-    <type name="Digibart\MessagesNotification\Block\Notifications">
+    <preference for="Digibart\Notifications\Api\ConfigResolverInterface" type="Digibart\Notifications\Config\ConfigResolver" />
+    <preference for="Digibart\Notifications\Api\NotificationsManagerInterface" type="Digibart\Notifications\Webapi\Rest\NotificationsManager" />
+    <type name="Digibart\Notifications\Block\Notifications">
         <arguments>
-            <argument name="identifierGenerator" xsi:type="object">Digibart\MessagesNotification\Identifier\IdentifierGenerator</argument>
+            <argument name="identifierGenerator" xsi:type="object">Digibart\Notifications\Identifier\IdentifierGenerator</argument>
         </arguments>
     </type>
 </config>

@@ -1,12 +1,12 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.pl>
  */
 
-namespace Digibart\MessagesNotification\Identifier;
+namespace Digibart\Notifications\Identifier;
 
-use Digibart\MessagesNotification\Api\IdentifierGeneratorInterface;
+use Digibart\Notifications\Api\IdentifierGeneratorInterface;
 
 /**
  * Class IdentifierGenerator
@@ -20,6 +20,6 @@ class IdentifierGenerator implements IdentifierGeneratorInterface
      */
     public function generate(string $base): string
     {
-        return base64_encode(str_pad($base, 10, "0", STR_PAD_LEFT));
+        return base64_encode(str_pad($base, 10, '0', STR_PAD_LEFT));
     }
 }

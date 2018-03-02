@@ -5,6 +5,6 @@ let config = {
         }
     },
     paths: {
-        socketio: 'Digibart_MessagesNotification/js/socket.io.slim'
+        socketio: 'Digibart_Notifications/js/socket.io.slim'
     }
 };

@@ -1,10 +1,10 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.com>
  */
 
-namespace Digibart\MessagesNotification\Api;
+namespace Digibart\Notifications\Api;
 
 /**
  * Interface ConfigResolverInterface
@@ -14,9 +14,10 @@ interface ConfigResolverInterface
     /**
      * Configuration paths
      */
-    const PATH_ENABLE = 'messages/general/enable';
-    const PATH_SERVICE_ENDPOINT = 'messages/general/service_endpoint';
-    const PATH_MODE = 'messages/general/mode';
+    const PATH_ENABLE          = 'messages/general/enable';
+    const PATH_API_ENDPOINT    = 'messages/general/api_endpoint';
+    const PATH_SOCKET_ENDPOINT = 'messages/general/socket_endpoint';
+    const PATH_MODE            = 'messages/general/mode';
 
     /**
      * @return bool
@@ -26,7 +27,12 @@ interface ConfigResolverInterface
     /**
      * @return string
      */
-    public function getServiceEndpoint(): string;
+    public function getApiEndpoint(): string;
+
+    /**
+     * @return string
+     */
+    public function getSocketEndpoint(): string;
 
     /**
      * @return int

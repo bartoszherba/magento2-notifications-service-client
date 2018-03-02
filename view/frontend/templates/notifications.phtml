@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Digibart\MessagesNotification\Block\Notifications $block
+ * @var \Digibart\Notifications\Block\Notifications $block
  */
 ?>
 <?php if($block->isModuleEnabled() && $block->isNotificationEnabled() && $block->isLoggedIn()) :?>
@@ -12,8 +12,8 @@
             "Magento_Ui/js/core/app": {
                "components": {
                     "notifications": {
-                        "component": "Digibart_MessagesNotification/js/component/notifications",
-                        "template" : "Digibart_MessagesNotification/notifications",
+                        "component": "Digibart_Notifications/js/component/notifications",
+                        "template" : "Digibart_Notifications/notifications",
                         "identifier": "<?php echo $block->getIdentifier(); ?>",
                         "options": <?php echo $block->getJsonOptions() ;?>
                     }

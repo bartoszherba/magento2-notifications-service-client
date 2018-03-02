@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <link src="Digibart_MessagesNotification::js/fonts/fontawesome-all.min.js"/>
-        <css src="Digibart_MessagesNotification::css/messages-notification.css"/>
+        <link src="Digibart_Notifications::js/fonts/fontawesome-all.min.js"/>
+        <css src="Digibart_Notifications::css/messages-notification.css"/>
     </head>
     <body>
         <referenceContainer name="header-wrapper">
-            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.inbox" as="inbox" template="Digibart_MessagesNotification::inbox.phtml" after="minicart"/>
+            <block class="Digibart\Notifications\Block\Notifications" name="digibart.inbox" as="inbox" template="Digibart_Notifications::inbox.phtml" after="minicart"/>
         </referenceContainer>
         <referenceContainer name="before.body.end">
-            <block class="Digibart\MessagesNotification\Block\Notifications" name="digibart.notification" as="notification" template="Digibart_MessagesNotification::notifications.phtml" />
+            <block class="Digibart\Notifications\Block\Notifications" name="digibart.notification" as="notification" template="Digibart_Notifications::notifications.phtml" />
         </referenceContainer>
     </body>
 </page>

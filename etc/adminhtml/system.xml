@@ -14,22 +14,27 @@
             <class>separator-top</class>
             <label>Messages Notification</label>
             <tab>digibart</tab>
-            <resource>Digibart_MessagesNotification::config</resource>
+            <resource>Digibart_Notifications::config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>General Configuration</label>
+                <label>Configuration</label>
                 <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="service_endpoint" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Service Endpoint</label>
-                    <validate>required-entry validate-url</validate>
-                    <comment>Socket and API requests will be send on this address</comment>
-                </field>
-                <field id="mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="mode" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Mode</label>
-                    <source_model>Digibart\MessagesNotification\Config\Source\Mode</source_model>
+                    <source_model>Digibart\Notifications\Config\Source\Mode</source_model>
                     <comment>If Notifications Only mode is enabled, messages will be removed immediately from server</comment>
+                </field>
+                <field id="api_endpoint" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Endpoint</label>
+                    <validate>required-entry validate-url</validate>
+                    <comment>API requests will be send on this address</comment>
+                </field>
+                <field id="socket_endpoint" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Socket Endpoint</label>
+                    <validate>required-entry validate-url</validate>
+                    <comment>Socket requests will be send on this address</comment>
                 </field>
             </group>
         </section>

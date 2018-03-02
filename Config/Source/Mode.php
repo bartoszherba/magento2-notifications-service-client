@@ -1,12 +1,17 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.com>
  */
 
-namespace Digibart\MessagesNotification\Config\Source;
+namespace Digibart\Notifications\Config\Source;
 
-class Mode implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Option\ArrayInterface;
+
+/**
+ * Class Mode
+ */
+class Mode implements ArrayInterface
 {
     /**
      * Options values
@@ -20,7 +25,7 @@ class Mode implements \Magento\Framework\Option\ArrayInterface
      *
      * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
      */
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         return [
             ['value' => self::OPT_DEFAULT, 'label' => __('Inbox and Notifications')],

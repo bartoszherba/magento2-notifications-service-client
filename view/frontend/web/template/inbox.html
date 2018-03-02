@@ -5,16 +5,23 @@
     </div>
     <div class="messages-list-wrapper" data-bind="css: {visible: visible}">
         <h2 class="messages-list-header"><!-- ko i18n: 'Notifications' --><!-- /ko --></h2>
-
+        <div class="ajax-loader" data-bind="visible: isAjax">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
         <!-- ko if: !isEmpty() -->
         <ul class="messages-list" data-bind="foreach: messages">
+
             <li class="item" data-bind="css: type">
-                <div class="message">
-                    <span data-bind="text: message"></span>
-                    <span class="date" data-bind="text: $parent.date(createdAt)"></span>
-                </div>
-                <div class="actions">
-                    <a href="#" class="remove-msg action" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
+                <div data-bind="css: {blurred: $parent.isAjax}">
+                    <div class="message">
+                        <span data-bind="text: message"></span>
+                        <span class="date" data-bind="text: $parent.date(createdAt)"></span>
+                    </div>
+                    <div class="actions">
+                        <a href="#" class="remove-msg action" data-bind="click: $parent.removeMsg"><i class="fas fa-trash-alt"></i></a>
+                    </div>
                 </div>
             </li>
         </ul>

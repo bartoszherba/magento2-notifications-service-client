@@ -1,10 +1,10 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.com>
  */
 
-namespace Digibart\MessagesNotification\Api;
+namespace Digibart\Notifications\Api;
 
 /**
  * Interface IdentifierGeneratorInterface
@@ -12,7 +12,7 @@ namespace Digibart\MessagesNotification\Api;
 interface IdentifierGeneratorInterface
 {
     /**
-     * @param string $input
+     * @param string $base
      *
      * @return string
      */
