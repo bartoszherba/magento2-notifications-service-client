@@ -28,7 +28,7 @@ define([
 
         let messages = ko.observableArray([]);
 
-        let newMsgCount = ko.computed(() => {
+        let messageCount = ko.computed(() => {
             var initialVal = 0;
 
             return messages().reduce(function (count, message) {
@@ -45,7 +45,7 @@ define([
         });
 
         return Core.extend({
-            newMsgCount: newMsgCount,
+            messageCount: messageCount,
             messages: messages,
             visible: ko.observable(false),
             isEmpty: isEmpty,
@@ -62,7 +62,7 @@ define([
                 });
             },
             handleNewMessage: function (response) {
-                this.messages.push(response.newMsg);
+                this.messages.push(response.message);
                 updateCounter(this.pop);
             },
             handleNewMessageList: function (list) {
@@ -84,7 +84,7 @@ define([
             toggle: function () {
                 this.visible(!this.visible());
 
-                if (this.visible() && this.newMsgCount()) {
+                if (this.visible() && this.messageCount()) {
                     var updatedMessages = [];
 
                     this.messages().forEach((message) => {

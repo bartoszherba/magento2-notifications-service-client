@@ -22,18 +22,18 @@ define([
                 this.notifications = ko.observableArray([]);
             },
             handleNewMessage: function (response) {
-                const newMsg = response.newMsg;
+                const message = response.message;
 
-                this.notifications.push(newMsg);
+                this.notifications.push(message);
 
                 if (this.isNotificationOnlyMode()) {
-                    deleteAction([this.identifier, newMsg._id, this.options.endpoint]).fail((jqXHR, err) => {
+                    deleteAction([this.identifier, message._id, this.options.endpoint]).fail((jqXHR, err) => {
                         console.log(err);
                     });
                 }
 
                 setTimeout(() => {
-                    this.handleRemoveMsg(newMsg);
+                    this.handleRemoveMsg(message);
                 }, this.options.timeout);
             },
             handleRemoveMsg: function (data) {

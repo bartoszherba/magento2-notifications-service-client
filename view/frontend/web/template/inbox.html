@@ -1,7 +1,7 @@
 <!-- ko if: isConnected() -->
     <div class="inbox" data-bind="click: toggle">
         <i class="fas fa-bell fa-lg"></i>
-        <span class="notifications-counter" data-bind="text: newMsgCount, visible: newMsgCount, css: pop"></span>
+        <span class="notifications-counter" data-bind="text: messageCount, visible: messageCount, css: pop"></span>
     </div>
     <div class="messages-list-wrapper" data-bind="css: {visible: visible}">
         <h2 class="messages-list-header"><!-- ko i18n: 'Notifications' --><!-- /ko --></h2>
