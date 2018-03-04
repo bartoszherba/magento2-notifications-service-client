@@ -1,14 +1,14 @@
 <?php
 /**
- * @package  Digibart\MessagesNotification
+ * @package  Digibart\Notifications
  * @author Bartosz Herba <bartoszherba@gmail.pl>
  */
 
-namespace Digibart\MessagesNotification\Block;
+namespace Digibart\Notifications\Block;
 
-use Digibart\MessagesNotification\Api\ConfigResolverInterface;
-use Digibart\MessagesNotification\Api\IdentifierGeneratorInterface;
-use Digibart\MessagesNotification\Config\Source\Mode;
+use Digibart\Notifications\Api\ConfigResolverInterface;
+use Digibart\Notifications\Api\IdentifierGeneratorInterface;
+use Digibart\Notifications\Config\Source\Mode;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\View\Element\Template;
 
@@ -85,9 +85,9 @@ class Notifications extends Template
     /**
      * @return string
      */
-    public function getServiceEndpoint(): string
+    public function getSocketEndpoint(): string
     {
-        return $this->configResolver->getServiceEndpoint();
+        return $this->configResolver->getSocketEndpoint();
     }
 
     /**
@@ -129,7 +129,7 @@ class Notifications extends Template
     {
         return json_encode(
             [
-                'endpoint'    => $this->getServiceEndpoint(),
+                'endpoint'    => $this->getSocketEndpoint(),
                 'mode'        => $this->getMode(),
                 'timeout'     => $this->_data['timeout'] ?? $this->defaultTimeout,
                 'fadeOutTime' => $this->_data['fadeOutTime'] ?? $this->defaultFadeOutTime,

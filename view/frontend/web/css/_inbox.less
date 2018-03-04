@@ -4,6 +4,8 @@
   position: relative;
 }
 
+
+
 .inbox {
   position: relative;
   display: inline-block;
@@ -75,6 +77,12 @@
     top: -1px;
     transition: transform 1s;
     border-left: 8px solid;
+
+    & .blurred {
+      -webkit-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);
+    }
 
     & .message {
       padding: 25px 20px;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Digibart\MessagesNotification\Block\Notifications $block
+ * @var \Digibart\Notifications\Block\Notifications $block
  */
 ?>
 <?php if($block->isModuleEnabled() && $block->isInboxEnabled() && $block->isLoggedIn()) :?>
@@ -12,8 +12,8 @@
             "Magento_Ui/js/core/app": {
                "components": {
                     "inbox": {
-                        "component": "Digibart_MessagesNotification/js/component/inbox",
-                        "template" : "Digibart_MessagesNotification/inbox",
+                        "component": "Digibart_Notifications/js/component/inbox",
+                        "template" : "Digibart_Notifications/inbox",
                         "identifier": "<?php echo $block->getIdentifier(); ?>",
                         "options": <?php echo $block->getJsonOptions() ;?>,
                         "elementId":"#inbox"

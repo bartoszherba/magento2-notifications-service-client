@@ -69,7 +69,8 @@ define([
                 this.messages(list);
             },
             handleRemoveMsg: function (data) {
-                deleteAction([this.identifier, data._id, this.options.endpoint]).done(() => {
+                this.isAjax(true);
+                deleteAction([this.identifier, data._id]).done(() => {
                     for (let i = 0; i < this.messages().length; i++) {
                         if (this.messages()[i]._id === data._id) {
                             const tmpMessages = this.messages();
@@ -77,8 +78,11 @@ define([
                             this.messages(tmpMessages);
                         }
                     }
+                    console.log(data);
+                    this.isAjax(false);
                 }).fail((jqXHR, err) => {
                     console.log(err);
+                    this.isAjax(false);
                 });
             },
             toggle: function () {
@@ -92,7 +96,7 @@ define([
                         updatedMessages.push(message);
                     });
 
-                    updateAction([updatedMessages, this.options.endpoint]).done(() => {
+                    updateAction(updatedMessages).done(() => {
                         this.messages(updatedMessages);
                     }).fail(() => {
                         console.log('Some error occurred while updating messages');
@@ -101,7 +105,8 @@ define([
             },
             date: function (dateString) {
                 return new Date(dateString).toLocaleString();
-            }
+            },
+            isAjax: ko.observable(false)
         });
     }
 );

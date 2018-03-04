@@ -1,14 +1,13 @@
 define(['jquery'], function ($) {
     "use strict";
 
-    return function (options) {
-        const [messages, hostname] = options;
-        return $.ajax(hostname + '/v1/message', {
-            method: 'patch',
+    return function (messages) {
+
+        return $.ajax('/rest/V1/notifications/update', {
+            method: 'post',
+            contentType: 'application/json',
             dataType: 'json',
-            data: {
-                updates: messages
-            }
+            data: JSON.stringify({messages: JSON.stringify(messages)})
         });
     }
 });

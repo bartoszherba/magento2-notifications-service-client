@@ -2,14 +2,16 @@ define(['jquery'], function ($) {
     "use strict";
 
     return function (options) {
-        const [identifier, messageId, hostname] = options;
+        const [identifier, messageId] = options;
 
-        return $.ajax(hostname + '/v1/message', {
-            method: 'delete',
-            data: {
+        return $.ajax('/rest/V1/notifications/delete', {
+            method: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
                 identifier: identifier,
                 _id: messageId
-            }
+            })
         });
     }
 });
