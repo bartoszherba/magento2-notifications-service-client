@@ -18,6 +18,7 @@ interface ConfigResolverInterface
     const PATH_API_ENDPOINT    = 'messages/general/api_endpoint';
     const PATH_SOCKET_ENDPOINT = 'messages/general/socket_endpoint';
     const PATH_MODE            = 'messages/general/mode';
+    const PATH_NAMESPACE       = 'messages/general/namespace';
 
     /**
      * @return bool
@@ -39,4 +40,8 @@ interface ConfigResolverInterface
      */
     public function getMode(): int;
 
+    /**
+     * @return string
+     */
+    public function getNamespace(): string;
 }

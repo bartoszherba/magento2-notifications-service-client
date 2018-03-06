@@ -36,6 +36,10 @@
                     <validate>required-entry validate-url</validate>
                     <comment>Socket requests will be send on this address</comment>
                 </field>
+                <field id="namespace" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Namespace</label>
+                    <comment>Namespace will be added to the identifier as a prefix [namespace-identifier] and therefore multiple instances of Magento can connect to the same service without sharing data.</comment>
+                </field>
             </group>
         </section>
     </system>

@@ -67,4 +67,12 @@ class ConfigResolver implements ConfigResolverInterface
     {
         return (int) $this->scopeConfig->getValue(self::PATH_MODE, ScopeInterface::SCOPE_STORE);
     }
+
+    /**
+     * @return string
+     */
+    public function getNamespace(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::PATH_NAMESPACE, ScopeInterface::SCOPE_STORE);
+    }
 }
