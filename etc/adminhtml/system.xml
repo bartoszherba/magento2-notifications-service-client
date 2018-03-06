@@ -12,7 +12,7 @@
         </tab>
         <section id="messages" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Messages Notification</label>
+            <label>Notifications</label>
             <tab>digibart</tab>
             <resource>Digibart_Notifications::config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
