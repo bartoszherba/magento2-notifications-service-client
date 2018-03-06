@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <mode>1</mode>
+                <namespace>common</namespace>
             </general>
         </messages>
     </default>

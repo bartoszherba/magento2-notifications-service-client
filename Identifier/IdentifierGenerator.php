@@ -6,6 +6,7 @@
 
 namespace Digibart\Notifications\Identifier;
 
+use Digibart\Notifications\Api\ConfigResolverInterface;
 use Digibart\Notifications\Api\IdentifierGeneratorInterface;
 
 /**
@@ -14,12 +15,29 @@ use Digibart\Notifications\Api\IdentifierGeneratorInterface;
 class IdentifierGenerator implements IdentifierGeneratorInterface
 {
     /**
+     * @var ConfigResolverInterface
+     */
+    private $configResolver;
+
+    /**
+     * IdentifierGenerator constructor.
+     *
+     * @param ConfigResolverInterface $configResolver
+     */
+    public function __construct(ConfigResolverInterface $configResolver)
+    {
+        $this->configResolver = $configResolver;
+    }
+
+    /**
+     * Will generate identifier as [$namespace-$base]
+     *
      * @param string $base
      *
      * @return string
      */
     public function generate(string $base): string
     {
-        return base64_encode(str_pad($base, 10, '0', STR_PAD_LEFT));
+        return implode('-', [$this->configResolver->getNamespace(), $base]);
     }
 }
